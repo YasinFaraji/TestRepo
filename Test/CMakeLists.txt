@@ -3,9 +3,10 @@ cmake_minimum_required(VERSION 3.16)
 project(Test VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Gui Qml Quick)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBGIT2 REQUIRED libgit2)
@@ -34,7 +35,9 @@ set_target_properties(appTest PROPERTIES
 )
 
 target_link_libraries(appTest
-    PRIVATE Qt6::Quick
+    PRIVATE Qt6::Gui
+    Qt6::Qml
+    Qt6::Quick
 )
 
 target_include_directories(appTest PRIVATE ${LIBGIT2_INCLUDE_DIRS})
